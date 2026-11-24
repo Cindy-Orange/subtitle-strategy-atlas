@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Subtitle Strategy Atlas</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="refinements.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div>
+        <p class="eyebrow" data-i18n="eyebrow">TRANSLATION TECHNOLOGY · 2026R1</p>
+        <h1 data-i18n="title">Subtitle Strategy Atlas</h1>
+        <p class="subtitle" data-i18n="subtitle">A searchable sample of English–Simplified Chinese film and television subtitles.</p>
+      </div>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a class="active" href="#browser" data-i18n="navBrowser">Browser</a>
+        <a href="#report" data-i18n="navReport">Report</a>
+        <a href="#codebook" data-i18n="navCodebook">Codebook</a>
+        <button id="language-toggle" class="icon-button" type="button" aria-label="切换语言" data-i18n-aria-label="languageToggle">繁</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section id="browser" class="browser-layout">
+      <aside class="filters-panel">
+        <div class="panel-heading">
+          <p class="eyebrow" data-i18n="filtersEyebrow">EXPLORE THE SAMPLE</p>
+          <h2 data-i18n="filtersTitle">Search and filter</h2>
+        </div>
+        <label for="search" data-i18n="searchLabel">Keyword</label>
+        <div class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="search" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="Search either language…">
+        </div>
+        <label for="category" data-i18n="categoryLabel">Category</label>
+        <select id="category"><option value="" data-i18n="allCategories">All categories</option></select>
+        <label for="checked" data-i18n="checkedLabel">Human checked</label>
+        <select id="checked">
+          <option value="" data-i18n="allStatuses">All statuses</option>
+          <option value="yes" data-i18n="checkedYes">Yes</option>
+          <option value="no" data-i18n="checkedNo">No</option>
+        </select>
+        <label for="ai-audit" data-i18n="aiAuditLabel">AI source audit</label>
+        <select id="ai-audit">
+          <option value="" data-i18n="allAuditStatuses">All audit statuses</option>
+          <option value="yes" data-i18n="auditYes">Exact source row</option>
+        </select>
+        <label for="unit" data-i18n="unitLabel">Unit</label>
+        <select id="unit"><option value="" data-i18n="allUnits">All units</option></select>
+        <button id="clear-filters" class="secondary-button" type="button" data-i18n="clearFilters">Clear filters</button>
+        <div class="filter-note" data-i18n="filterNote">Every chart and row below responds to the same filters. Click a term or point to narrow the view and share the URL.</div>
+      </aside>
+
+      <div class="content-column">
+        <section class="hero-strip">
+          <div>
+            <p class="eyebrow" data-i18n="sampleEyebrow">REPRODUCIBLE SAMPLE</p>
+            <h2 data-i18n="questionTitle">How does conversational meaning travel across subtitles?</h2>
+            <p data-i18n="questionBody">This browser follows 500 pairs sampled from OPUS OpenSubtitles v2024. The working labels remain provisional until the pilot and human checks are complete.</p>
+          </div>
+          <div class="stat-stack">
+            <strong id="total-count">500</strong>
+            <span data-i18n="sampledPairs">sampled pairs</span>
+          </div>
+        </section>
+        <section class="provenance-strip" aria-label="数据来源信息" data-i18n-aria-label="provenanceAria">
+          <div><span class="provenance-label" data-i18n="provenanceSource">SOURCE</span><strong>OPUS OpenSubtitles v2024</strong></div>
+          <div><span class="provenance-label" data-i18n="provenanceSeed">SEED</span><strong>2026</strong></div>
+          <div><span class="provenance-label" data-i18n="provenanceReview">REVIEW STATUS</span><strong><span class="status-dot"></span><span data-i18n="provenanceStatus">AI reviewed · human check pending</span></strong></div>
+        </section>
+        <section class="audit-summary" aria-label="来源核对摘要" data-i18n-aria-label="auditAria">
+          <div><strong>500 / 500</strong><span data-i18n="auditExact">source pairs reproduced exactly</span></div>
+          <div><strong>0</strong><span data-i18n="auditMismatch">text mismatches found</span></div>
+          <div><strong>159</strong><span data-i18n="auditFlags">pairs flagged for short target text</span></div>
+        </section>
+
+        <section class="visual-grid" aria-label="Interactive visualisations">
+          <article class="viz-card wide">
+            <div class="card-head"><div><p class="eyebrow" data-i18n="viz1Eyebrow">VIEW 01 · DISTRIBUTION</p><h3 data-i18n="viz1Title">Coding status by strategy</h3></div><button class="help-button" type="button" title="统计当前筛选结果中各类别的数量" data-i18n-title="chartHelp1">?</button></div>
+            <p class="viz-description" data-i18n="viz1Desc">Which translation strategies are most visible in the current sample?</p>
+            <div id="category-chart" class="chart chart-bars"></div>
+          </article>
+          <article class="viz-card">
+            <div class="card-head"><div><p class="eyebrow" data-i18n="viz2Eyebrow">VIEW 02 · DISTRIBUTION</p><h3 data-i18n="viz2Title">Length relationship</h3></div><button class="help-button" type="button" title="比较英文和中文文本的字符数" data-i18n-title="chartHelp2">?</button></div>
+            <p class="viz-description" data-i18n="viz2Desc">Do longer English segments tend to produce longer Chinese segments?</p>
+            <div id="length-chart" class="chart chart-scatter"></div>
+          </article>
+          <article class="viz-card">
+            <div class="card-head"><div><p class="eyebrow" data-i18n="viz3Eyebrow">VIEW 03 · LEXICAL</p><h3 data-i18n="viz3Title">Clickable English terms</h3></div><button class="help-button" type="button" title="点击词语即可搜索语料" data-i18n-title="chartHelp3">?</button></div>
+            <p class="viz-description" data-i18n="viz3Desc">Which recurring words create useful entry points into the corpus?</p>
+            <div id="term-cloud" class="term-cloud"></div>
+          </article>
+        </section>
+
+        <section class="table-section">
+          <div class="table-toolbar">
+            <div><p class="eyebrow" data-i18n="tableEyebrow">CORPUS TABLE</p><h2 data-i18n="tableTitle">Aligned subtitle pairs</h2></div>
+            <div class="table-meta"><span id="result-count">500</span> <span data-i18n="results">results</span><button id="download-csv" class="secondary-button compact" type="button" data-i18n="downloadCsv">Download CSV</button></div>
+          </div>
+          <div class="table-wrap"><table><thead><tr><th><button class="sort-button" data-sort="id" data-i18n="thId">ID</button></th><th><button class="sort-button" data-sort="source_text" data-i18n="thSource">English source</button></th><th><button class="sort-button" data-sort="target_text" data-i18n="thTarget">Chinese target</button></th><th><button class="sort-button" data-sort="category" data-i18n="thCategory">Category</button></th><th><button class="sort-button" data-sort="human_checked" data-i18n="thChecked">Human checked</button></th><th><button class="sort-button" data-sort="ai_source_checked" data-i18n="thAudit">AI audit</button></th></tr></thead><tbody id="corpus-body"><tr><td colspan="6" class="empty" data-i18n="loading">Loading corpus…</td></tr></tbody></table></div>
+          <div class="table-footer"><span id="page-status"></span><div class="pagination"><button id="previous-page" class="page-button" type="button" aria-label="上一页" data-i18n-aria-label="previousPage">←</button><button id="next-page" class="page-button" type="button" aria-label="下一页" data-i18n-aria-label="nextPage">→</button></div></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="report" class="document-section">
+      <div class="document-heading"><p class="eyebrow" data-i18n="reportEyebrow">LEARNING REPORT</p><h2 data-i18n="reportTitle">From sampled lines to a translation argument</h2></div>
+      <div class="report-grid">
+        <div><h3 data-i18n="originHeading">Origin</h3><p data-i18n="originText">This project asks how informal subtitle dialogue is reshaped when it moves from English into Simplified Chinese. The topic was chosen because subtitles expose translation decisions in short, high-pressure units that viewers encounter repeatedly.</p></div>
+        <div><h3 data-i18n="methodHeading">Method</h3><p data-i18n="methodText">The sample comes from OPUS OpenSubtitles v2024. A fixed seed, recorded candidate pool, explicit filters, and preserved source line IDs make the selection reproducible. The codebook is piloted on 30 pairs before the full sample is coded.</p></div>
+        <div><h3 data-i18n="analysisHeading">Analysis</h3><p data-i18n="analysisText">The provisional labels suggest that compression is common, but a length heuristic can confuse subtitle reduction with language-specific density or alignment noise. Each claim is traceable to the same filtered rows shown in the charts and table.</p></div>
+        <div><h3 data-i18n="reflectionHeading">Reflection</h3><p data-i18n="reflectionText">AI completed the extraction, coding, interface construction, and source-line review. The site keeps human_checked as no so the distinction between agent review and personal verification remains visible.</p></div>
+      </div>
+      <details class="document-details">
+        <summary><span data-i18n="readFullReport">Read the formal learning report</span><span class="details-mark" aria-hidden="true">+</span></summary>
+        <div class="long-document">
+          <div class="doc-en">
+          <h3>Project Title</h3>
+          <p><strong>Subtitle Strategy Atlas: Conversational Translation Strategies in English–Simplified Chinese Film and Television Subtitles</strong></p>
+          <h3>1. Origin</h3>
+          <p>This project examines how conversational meaning changes when English film and television subtitles are rendered in Simplified Chinese. I chose subtitles because they are short, visible translation units produced under practical constraints: limited display time, limited reading space, segmentation differences, and the need to sound natural in dialogue. These constraints make subtitles a useful site for observing reduction, reformulation, explicitation, idiomatic equivalence, and shifts in interpersonal tone.</p>
+          <p>The project also responds to a practical problem in translation technology. A large parallel corpus can contain millions of sentence pairs, but a learner needs a smaller, inspectable sample in which each row can be searched, filtered, compared, and connected to an analytical claim. The website turns a fixed sample into a research interface rather than treating the corpus as an opaque download.</p>
+          <h3>2. Background</h3>
+          <p>Subtitling is constrained translation. The target subtitle must communicate enough of the source utterance for the viewer to follow the scene while fitting the temporal and spatial conditions of subtitle display. A translator may therefore preserve the main proposition while reducing repetition, discourse markers, vocatives, politeness material, or culturally specific wording. A literal comparison of character counts cannot prove that omission occurred, because English and Chinese differ in orthography, segmentation, and information packaging. The project treats length as a diagnostic signal and combines it with a provisional strategy code.</p>
+          <p>The theoretical frame combines three levels. Vinay and Darbelnet's procedures provide vocabulary for direct rendering and equivalence. Blum-Kulka's explicitation hypothesis provides a way to discuss information made more explicit in translation. Gottlieb's subtitling work provides a domain-specific rationale for reduction and deletion. House's work on register supports the analysis of formality, politeness, and interpersonal force. These sources guide the codebook; they do not turn an automatic label into a final linguistic judgment.</p>
+          <h3>3. Gap</h3>
+          <p>Existing subtitle corpora provide scale and alignment, but the raw files do not automatically provide a transparent account of sampling, data quality, coding decisions, and uncertainty. This project addresses that gap with a fixed random seed, recorded candidate pool, explicit filters, preserved source line IDs, an audit file, a codebook, and a linked browser in which charts and the table share one filtered state.</p>
+          <h3>4. Research Question</h3>
+          <p><strong>How are conversational features in English subtitles rendered in Simplified Chinese, and which provisional translation strategies are visible in a reproducible sample from OPUS OpenSubtitles v2024?</strong></p>
+          <h3>5. Data and Sampling</h3>
+          <p>The source is the OPUS OpenSubtitles v2024 English–Simplified Chinese (<code>en-zh_CN</code>) Moses package. The English and Chinese files each contain 22,394,812 aligned lines. The sampling script selected 10,000 distinct line IDs with fixed seed <code>2026</code>. Both lines had to be non-empty, the English side had to contain a Latin letter, and neither side could exceed 180 Unicode code points. Seven candidates without an English letter and eight over-length candidates were rejected. The remaining 9,985 eligible candidates were shuffled and the first 500 became the working corpus.</p>
+          <h3>6. Source Audit and Data Quality</h3>
+          <p>The AI agent re-read the original OPUS archive for all 500 selected rows. English text, Chinese text, and the complete pair matched the recorded source line in all 500 cases. No text mismatches were found. The audit flagged 159 target segments as much shorter, 43 with Latin fragments, 6 with subtitle markup, 6 without Han characters, 9 much longer, and 3 identical source-target pairs. These are quality signals for further review, not proof that a translation is wrong.</p>
+          <p><code>ai_source_checked = yes</code> means the agent reproduced the selected text from the recorded source line. <code>human_checked = yes</code> would mean a student personally checked it. In this agent-completed version, all rows remain <code>human_checked = no</code>.</p>
+          <h3>7. Coding and Pilot</h3>
+          <p>The codebook uses six provisional labels: close rendering; idiomatic or pragmatic equivalence; explicitation or addition; omission or compression; register or intensity shift; and unclear or alignment-limited. The 30-row pilot file records the initial labels and reasoning. The labels are intended as a first-pass classification for browsing and hypothesis formation.</p>
+          <h3>8. Analysis</h3>
+          <p>The provisional distribution is 336 omission or compression, 140 close rendering, 13 explicitation or addition, 7 register or intensity shift, and 4 unclear or alignment-limited. The high compression count must be interpreted cautiously because the classifier uses a length ratio affected by Chinese character density, punctuation, segmentation, repeated subtitle material, and alignment noise.</p>
+          <p>The <strong>Coding status by strategy</strong> chart shows provisional category counts. The <strong>Length relationship</strong> view compares English and Chinese character counts. The <strong>Clickable English terms</strong> view turns recurring words into search entry points. All visualisations and the table use the same filtered rows.</p>
+          <h3>9. Conclusion</h3>
+          <p>The project delivers a reproducible 500-pair working corpus, an audit trail, a provisional codebook, and a bilingual static browser. Its main contribution is the connection between method and interface: each row can be traced to an OPUS line, filtered, visualised, and exported with its provenance fields.</p>
+          <h3>10. Reflection on AI Collaboration</h3>
+          <p>The AI agent was effective at data preservation, deterministic sampling, source auditing, structured files, interface construction, and repeated calculations. It was less reliable when context outside one subtitle segment was needed. A short target can be valid subtitle reduction, different segmentation, bad alignment, or a neighbouring subtitle fragment. Surface rules cannot decide among those possibilities alone.</p>
+          <h3>11. Copyright and Public Release</h3>
+          <p>The source package is distributed through OPUS from subtitle material contributed to OpenSubtitles. OPUS states that it does not own the extracted text and maintains a notice-and-takedown process. The website includes a short course sample, source attribution, and links to OPUS and OpenSubtitles. The full source archive is not published.</p>
+          </div>
+          <div class="doc-zh" lang="zh-Hans">
+            <h3>项目名称</h3><p><strong>字幕翻译策略图谱：英中影视字幕中的口语翻译策略</strong></p>
+            <h3>一、研究起点</h3><p>本项目考察英语影视字幕译为简体中文时，口语意义如何发生变化。字幕受到显示时间、屏幕空间、分句差异和对话自然度等实际条件限制，因此适合观察省略、改写、显化、习语对等和人际语气变化。</p><p>大型平行语料库包含数百万句对，但学习者需要规模较小、可检查、可搜索和可与分析结论相联系的样本。本网站将固定样本整理成研究浏览界面。</p>
+            <h3>二、研究背景</h3><p>字幕翻译受到时间和空间约束。译文需要传达足够信息帮助观众理解场景，同时适应字幕显示条件。译者可能保留主要命题，同时压缩重复内容、话语标记、称呼语、礼貌表达或文化特定措辞。单纯比较字符数不能证明发生了省略，因为中英文在书写、分词和信息组织方面不同。本项目将长度视为诊断线索，并结合暂定策略编码。</p><p>理论框架包括 Vinay 与 Darbelnet 的翻译程序、Blum-Kulka 的显化假说、Gottlieb 的字幕翻译研究，以及 House 关于语域的论述。这些理论用于指导编码手册，并不意味着自动标签就是最终语言学判断。</p>
+            <h3>三、研究缺口</h3><p>现有字幕语料提供了规模和对齐数据，但原始文件不会自动说明抽样、数据质量、编码决策及其不确定性。本项目通过固定随机种子、记录候选池、明确筛选条件、保留来源行号、建立审计文件和编码手册来提高透明度。</p>
+            <h3>四、研究问题</h3><p><strong>英语字幕中的口语特征如何译为简体中文？在 OPUS OpenSubtitles v2024 的可复现样本中，可以观察到哪些暂定翻译策略？</strong></p>
+            <h3>五、数据与抽样</h3><p>数据来源为 OPUS OpenSubtitles v2024 英语—简体中文（en-zh_CN）Moses 数据包。英、中两侧各有 22,394,812 行对齐文本。脚本使用固定随机种子 2026 抽取 10,000 个不同来源行号。两侧文本必须非空，英文须含拉丁字母，且两侧均不超过 180 个 Unicode 字符。剔除 7 条不含英文字符及 8 条超长候选后，剩余 9,985 条合格候选，打乱后取前 500 条作为工作语料。</p>
+            <h3>六、来源核对与数据质量</h3><p>AI agent 根据来源行号重新读取 OPUS 原始数据包。500 条样本的英文、中文及完整句对均与记录的来源行一致，未发现文本不匹配。审计启发式标记了 159 条目标文本明显较短、43 条含拉丁片段、6 条含字幕标记、6 条不含汉字、9 条明显较长，以及 3 条英中完全相同。这些是进一步检查的线索，并不能单独证明翻译有误。</p><p><code>ai_source_checked = yes</code> 表示 agent 已按来源行复现文本；<code>human_checked = yes</code> 应表示实际使用者完成了人工检查。当前版本不得将 agent 检查冒充为学生本人核验。</p>
+            <h3>七、编码与试标</h3><p>编码手册包含六个暂定类别：接近直译、习语或语用对等、显化或增译、省略或压缩、语域或强度变化、对齐不清。30 条试标文件记录初始标签和理由，供后续浏览和提出假设使用。</p>
+            <h3>八、初步分析</h3><p>暂定分布为：省略或压缩 336 条、接近直译 140 条、显化或增译 13 条、语域或强度变化 7 条、对齐不清 4 条。分类器使用长度比例启发式，因此结果可能受汉字密度、标点、分句方式、重复字幕和对齐噪声影响，必须谨慎解释。</p><p>策略分布图展示各类别数量；长度关系图比较英中文本字符数；高频英文词视图提供语料搜索入口。所有图表和表格均响应同一组筛选条件。</p>
+            <h3>九、结论</h3><p>项目交付了可复现的 500 条句对工作语料、来源审计记录、暂定编码手册和双语静态浏览器。每条记录均可追溯至 OPUS 来源行，并可筛选、可视化和导出。</p>
+            <h3>十、AI 协作反思</h3><p>AI agent 适合执行数据保存、确定性抽样、来源核对、结构化文件整理、界面构建和重复计算。当句对需要依赖影片场景上下文时，自动判断能力有限。短译文可能是合理压缩、分句差异、错误对齐或相邻字幕片段，仅靠表层规则无法区分。</p>
+            <h3>十一、版权与公开发布</h3><p>OPUS 发布的 OpenSubtitles 字幕材料来自用户贡献。OPUS 声明其不拥有提取文本，并设有通知和下架流程。网站仅展示课程所需的短篇样本，并注明来源及链接；不公开完整原始数据包。</p>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="codebook" class="document-section codebook-section">
+      <div class="document-heading"><p class="eyebrow" data-i18n="codebookEyebrow">CODING MANUAL</p><h2 data-i18n="codebookTitle">Provisional categories for the pilot</h2><p data-i18n="codebookIntro">These definitions are a working draft. They must be tested on 20–30 pairs and rewritten or revised before the final analysis.</p></div>
+      <div class="codebook-grid">
+        <article><span>01</span><h3 data-i18n="cb1Title">Close rendering</h3><p data-i18n="cb1Text">The target keeps the main meaning and broadly mirrors the source wording or structure.</p></article>
+        <article><span>02</span><h3 data-i18n="cb2Title">Idiomatic equivalence</h3><p data-i18n="cb2Text">A different phrase preserves a conversational function, idiom, or natural response.</p></article>
+        <article><span>03</span><h3 data-i18n="cb3Title">Explicitation</h3><p data-i18n="cb3Text">The target makes an implicit relation or cue more explicit, or adds identifiable information.</p></article>
+        <article><span>04</span><h3 data-i18n="cb4Title">Omission or compression</h3><p data-i18n="cb4Text">Source material is left out or noticeably compressed for subtitle timing or readability.</p></article>
+        <article><span>05</span><h3 data-i18n="cb5Title">Register or intensity shift</h3><p data-i18n="cb5Text">The target changes formality, politeness, emotional force, or vulgarity.</p></article>
+        <article><span>06</span><h3 data-i18n="cb6Title">Unclear alignment</h3><p data-i18n="cb6Text">The pair is too incomplete, noisy, or misaligned for a defensible strategy label.</p></article>
+      </div>
+      <details class="document-details">
+        <summary><span data-i18n="readFullCodebook">Read the full coding manual</span><span class="details-mark" aria-hidden="true">+</span></summary>
+        <div class="long-document">
+          <div class="doc-en">
+          <h3>Purpose and Unit of Analysis</h3>
+          <p>The unit is one aligned subtitle segment pair from the 500-row sample. The code describes the most visible relationship between the English source and Simplified Chinese target. It does not rate the translator, film, or overall subtitle file. Each row receives one primary category; secondary observations belong in <code>notes</code>.</p>
+          <h3>Decision Sequence</h3>
+          <ol><li>Check whether the segments are plausibly aligned. If not, use <strong>unclear or alignment-limited</strong>.</li><li>Check for the strongest change in tone, politeness, emotional force, or vulgarity. Use <strong>register or intensity shift</strong>.</li><li>Check whether source material with identifiable work is absent. Use <strong>omission or compression</strong>.</li><li>Check whether the target adds an identifiable relation, reference, or cue. Use <strong>explicitation or addition</strong>.</li><li>Check for a non-literal phrase preserving an idiom, speech act, or conversational function. Use <strong>idiomatic or pragmatic equivalence</strong>.</li><li>If no contrast is salient, use <strong>close rendering</strong>.</li></ol>
+          <h3>1. Close Rendering</h3>
+          <p><strong>Definition:</strong> The target preserves the main proposition and broadly follows the source wording or structure.</p><p><strong>Theory:</strong> Vinay and Darbelnet's direct translation procedures (1958/1995).</p><p><strong>Rule:</strong> Use when no salient idiomatic substitution, addition, omission, or register change is visible.</p><p><strong>Example:</strong> “Come here.” → “过来。”</p><p><strong>Boundary:</strong> “I need to go.” → “我得走了。” Normal Chinese grammar does not by itself make this an explicitation.</p>
+          <h3>2. Idiomatic or Pragmatic Equivalence</h3>
+          <p><strong>Definition:</strong> The target uses a different expression to preserve an idiom, routine formula, speech act, or conversational function.</p><p><strong>Theory:</strong> Vinay and Darbelnet's equivalence procedure; Baker (1992).</p><p><strong>Rule:</strong> Use when a literal rendering would be unnatural or would fail to perform the same conversational job.</p><p><strong>Example:</strong> “What's up?” → “怎么了？”</p><p><strong>Boundary:</strong> “Come on.” → “快点。” requires context to distinguish pragmatic equivalence from close rendering.</p>
+          <h3>3. Explicitation or Addition</h3>
+          <p><strong>Definition:</strong> The target makes an implicit relation, reference, or discourse cue explicit, or adds identifiable material not overtly expressed in the source.</p><p><strong>Theory:</strong> Blum-Kulka's explicitation hypothesis (1986).</p><p><strong>Rule:</strong> There must be a recoverable added meaning or cue; ordinary Chinese grammar is not enough.</p><p><strong>Example:</strong> “Careful!” → “小心一点！”</p><p><strong>Boundary:</strong> “Wait.” → “等我一下。” requires context to establish whether “me” is a meaningful addition.</p>
+          <h3>4. Omission or Compression</h3>
+          <p><strong>Definition:</strong> Source meaning, repetition, discourse material, or part of the proposition is absent or noticeably compressed in the target.</p><p><strong>Theory:</strong> Gottlieb's subtitling strategies, including reduction and deletion (1992).</p><p><strong>Rule:</strong> Identify the source element with no visible target counterpart and distinguish it from ordinary Chinese restructuring.</p><p><strong>Example:</strong> “Well, I really don't know.” → “不知道。”</p><p><strong>Boundary:</strong> “You know, I mean, it's just…” → “就是……” may remove routine hesitation rather than propositional meaning.</p>
+          <h3>5. Register or Intensity Shift</h3>
+          <p><strong>Definition:</strong> The target changes formality, politeness, emotional force, interpersonal distance, or vulgarity while the central proposition remains recognisable.</p><p><strong>Theory:</strong> House's account of register and translation quality (2015).</p><p><strong>Rule:</strong> Use when the tone change is the most salient decision and record its direction in <code>notes</code>.</p><p><strong>Example:</strong> “Shut up!” → “请安静。”</p><p><strong>Boundary:</strong> An idiom may change emotional force as a side effect; use this category only when tone is dominant.</p>
+          <h3>6. Unclear or Alignment-Limited</h3>
+          <p><strong>Definition:</strong> The pair is too incomplete, noisy, artefact-filled, or apparently misaligned to support a defensible strategy label.</p><p><strong>Theory:</strong> OPUS sentence-alignment documentation; this is a corpus-quality category rather than a translation procedure.</p><p><strong>Rule:</strong> Use when the pair appears unrelated, contains artefacts, or requires unavailable scene context. Do not use it merely because the translation is short.</p><p><strong>Example:</strong> “Wait here.” → “你有看见他吗？”</p><p><strong>Boundary:</strong> “Stop!” → “别打了！” may be contextually aligned; use a strategy label when the pair supports that reading.</p>
+          <h3>Pilot and Revision Log</h3>
+          <p>The pilot consists of 30 rows in <code>data/category-pilot-30.csv</code>. Each row should receive a proposed category, final category, and decision note. The current agent version records provisional labels and does not claim that a human student completed the pilot.</p>
+          <table class="revision-table"><thead><tr><th>Revision date</th><th>Definition changed</th><th>Reason</th></tr></thead><tbody><tr><td>Pending</td><td>Pending</td><td>Student pilot has not replaced the agent-generated provisional labels.</td></tr></tbody></table>
+          </div>
+          <div class="doc-zh" lang="zh-Hans">
+            <h3>编码目的与分析单位</h3><p>分析单位是 500 条样本中的一个英中对齐字幕片段。每条记录只标注最显著的一项翻译关系；次要观察写入备注。该编码不评价译者、影片或整份字幕文件。</p>
+            <h3>判定顺序</h3><ol><li>先判断两段文本是否可能对齐；无法合理对应时，标为“对齐不清”。</li><li>检查语气、礼貌、情感力度或粗俗程度是否发生显著变化；若这是最突出的变化，标为“语域或强度变化”。</li><li>检查原文中有意义的内容是否在译文中缺失；若是，标为“省略或压缩”。</li><li>检查译文是否增加了可辨认的关系、指称或提示；若是，标为“显化或增译”。</li><li>检查译文是否用不同说法保留习语、言语行为或口语功能；若是，标为“习语或语用对等”。</li><li>若没有显著变化，标为“接近直译”。</li></ol>
+            <h3>一、接近直译</h3><p><strong>定义：</strong>译文保留主要命题，并大体沿用原文措辞或结构。<strong>理论：</strong>Vinay 与 Darbelnet 的直接翻译程序。<strong>规则：</strong>当没有明显的习语替换、增译、省略或语域变化时使用。<strong>示例：</strong>“Come here.” → “过来。”<strong>边界：</strong>正常的中文语法调整本身不构成显化。</p>
+            <h3>二、习语或语用对等</h3><p><strong>定义：</strong>译文使用不同表达，以保留习语、惯用语、言语行为或对话功能。<strong>理论：</strong>Vinay 与 Darbelnet 的对等程序及 Baker 的相关研究。<strong>规则：</strong>直译会显得不自然或无法完成相同交际功能时使用。<strong>示例：</strong>“What's up?” → “怎么了？”<strong>边界：</strong>“Come on.” → “快点。”需结合语境判断是语用对等还是接近直译。</p>
+            <h3>三、显化或增译</h3><p><strong>定义：</strong>译文明确表达原文隐含的关系、指称或话语提示，或增加了原文没有明说的信息。<strong>理论：</strong>Blum-Kulka 的显化假说。<strong>规则：</strong>必须指出可识别的新增意义，不能仅凭中文语法更完整就判定显化。<strong>示例：</strong>“Careful!” → “小心一点！”<strong>边界：</strong>“Wait.” → “等我一下。”须有语境证据证明“我”是新增信息。</p>
+            <h3>四、省略或压缩</h3><p><strong>定义：</strong>原文意义、重复内容、话语材料或命题的一部分在译文中缺失或明显压缩。<strong>理论：</strong>Gottlieb 关于字幕缩减和删除的研究。<strong>规则：</strong>指出原文中没有对应译文的具体成分，并与正常汉语重组区分。<strong>示例：</strong>“Well, I really don't know.” → “不知道。”<strong>边界：</strong>被删除的可能只是惯常犹豫语，而非命题意义。</p>
+            <h3>五、语域或强度变化</h3><p><strong>定义：</strong>译文改变了正式程度、礼貌程度、情感力度、人际距离或粗俗程度，而主要命题仍可辨认。<strong>理论：</strong>House 关于语域和翻译质量的论述。<strong>规则：</strong>当语气变化最突出时使用，并在备注中记录变化方向。<strong>示例：</strong>“Shut up!” → “请安静。”<strong>边界：</strong>若语气变化只是习语转换的附带结果，应优先按主要策略编码。</p>
+            <h3>六、对齐不清</h3><p><strong>定义：</strong>句对不完整、噪声明显、含字幕杂项或疑似错配，无法可靠判定翻译策略。<strong>规则：</strong>文本看似无关、包含无法解释的残片或需要缺失的场景上下文时使用；不能仅因译文短就选择此类。<strong>示例：</strong>“Wait here.” → “你有看见他吗？”<strong>边界：</strong>短句可能依赖影片语境，不应未经判断就认定为错配。</p>
+            <h3>试标与修订记录</h3><p>试标样本为 30 条。每条应记录初始类别、最终类别和判定说明。当前标签为 agent 生成的暂定结果，不能声称已由学生完成试标。</p><table class="revision-table"><thead><tr><th>修订日期</th><th>定义变更</th><th>原因</th></tr></thead><tbody><tr><td>待定</td><td>待定</td><td>尚未根据学生试标结果修订。</td></tr></tbody></table>
+          </div>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <footer class="site-footer"><p>Source: <a href="https://opus.nlpl.eu/legacy/OpenSubtitles-v2024.php">OPUS OpenSubtitles v2024</a> · <a href="https://www.opensubtitles.org/">OpenSubtitles</a></p><p data-i18n="footerNote">Course project · labels and verification status are provisional until the student review is complete.</p></footer>
+  <script src="data/corpus.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
